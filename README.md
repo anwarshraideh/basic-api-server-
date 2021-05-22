@@ -15,4 +15,3 @@ Clone the repo from git hub then run "npm init -y" also run "npm i"and Create .e
 # uml
 
 ![uml](images/Uml1.png)
-
