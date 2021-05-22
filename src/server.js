@@ -19,16 +19,16 @@ app.use('*', notFound);
 app.use(serverError);
 
 
-const start = (port) => {
-  app.listen(port, () => {
-    console.log('The app is listening on the port: ', port);
-  });
-};
 
 module.exports = {
   app: app,
-  listen: start,
+  start:start,
 };
+
+function start(port) {
+  app.listen(port, () => console.log(`Server is listening to port ${port}`));
+}
+
 
 
 
