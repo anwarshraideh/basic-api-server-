@@ -2,8 +2,9 @@
 
 # linkes 
 
-[pull-request]()
-[heroku-deployment]()
+[pull-request](https://github.com/anwarshraideh/basic-api-server-/pull/2)
+
+[heroku-deployment](https://anwar-basic-api-server.herokuapp.com/)
 
 
 # setup
@@ -13,4 +14,5 @@ Clone the repo from git hub then run "npm init -y" also run "npm i"and Create .e
 
 # uml
 
-![uml](images/)
+![uml](images/Uml1.png)
+
