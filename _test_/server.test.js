@@ -8,7 +8,7 @@ let idFood;
 let idClothe;
 
 // errors 404
-describe('Not found errors', () => {
+describe('server test', () => {
   it('should return a 404 error on bad route', async () => {
     let response = await request.get('/foo');
     expect(response.status).toEqual(404);
@@ -17,79 +17,84 @@ describe('Not found errors', () => {
     let response = await request.post('/foo');
     expect(response.status).toEqual(404);
   });
+
 });
 
 // POST
-describe('Correct status codes and returned data for POST routes', () => {
-  it('should return all records for food from the local memory data', async () => {
+describe('POST routes', () => {
+  it('should return all records for food ', async () => {
     let response = await request
       .post('/food')
-      .send({ type: 'salad', ingrediant: 'vigtibals' });
+      .send({ type: 'healthy', name: 'soap' });
     expect(response.status).toEqual(200);
     idFood = response.body.id;
     expect(response.body.data).toStrictEqual({
-      type: 'salad',
-      ingrediant: 'vigtibals',
+      type: 'healthy',
+      name: 'soap',
     });
   });
-  it('should return all records for clothes from the local memory data', async () => {
+  it('should return all records for clothes', async () => {
     let response = await request
       .post('/clothes')
-      .send({ type: 'T-shirt', color: 'white' });
+      .send({ type: 'blouse', color: 'white' });
     expect(response.status).toEqual(200);
     idClothe = response.body.id;
     expect(response.body.data).toStrictEqual({
-      type: 'T-shirt',
+      type: 'blouse',
       color: 'white',
     });
   });
 });
 // GET All
-describe('Correct status codes and returned data for GET routes', () => {
-  it('should return all records for food from the local memory data', async () => {
+describe('GET routes', () => {
+  it('should return all records for food ', async () => {
     let response = await request.get('/food');
     expect(response.status).toEqual(200);
   });
-  it('should return all records for clothes from the local memory data', async () => {
+  it('should return all records for clothes ', async () => {
     let response = await request.get('/clothes');
     expect(response.status).toEqual(200);
   });
 });
 // GET by ID
-describe('Correct status codes and returned data for GET/:id routes', () => {
-  it('should return one records with same id for food from the local memory data', async () => {
+describe(' GET/:id routes', () => {
+  it('should return one records with same id for food ', async () => {
     let response = await request.get(`/food/${idFood}`);
     expect(response.status).toEqual(200);
     expect(response.body.id).toEqual(idFood);
   });
-  it('should return one records with same id for clothes from the local memory data', async () => {
+  it('should return one records with same id for clothes ', async () => {
     let response = await request.get(`/clothes/${idClothe}`);
     expect(response.status).toEqual(200);
     expect(response.body.id).toEqual(idClothe);
   });
 });
+
 // UPDATE
-describe('Correct status codes and returned data for UPDATE/:id routes', () => {
-  it('should return one records with same id and data sent for food from the local memory data', async () => {
+
+describe('UPDATE/:id routes', () => {
+  it('should return one records with same id and data sent for food', async () => {
     let response = await request
       .put(`/food/${idFood}`)
-      .send({ type: 'steak', ingrediant: 'meat' });
+      .send({ type: 'fastfood', name: 'burger' });
     expect(response.status).toEqual(200);
     expect(response.body.data).toStrictEqual({
-      type: 'steak',
-      ingrediant: 'meat',
+      type: 'fastfood',
+      name: 'burger',
     });
   });
-  it('should return one records with same id for clothes from the local memory data', async () => {
+  it('should return one records with same id for clothes', async () => {
     let response = await request
       .put(`/clothes/${idClothe}`)
-      .send({ type: 'jeans', color: 'blue' });
+      .send({ type: 'jacket', color: 'red' });
     expect(response.status).toEqual(200);
-    expect(response.body.data).toStrictEqual({ type: 'jeans', color: 'blue' });
+    expect(response.body.data).toStrictEqual({ type: 'jacket', color: 'red' });
   });
 });
+
+
 // DELETE
-describe('Correct status codes and returned data for Delete/:id routes', () => {
+describe('Delete/:id routes', () => {
   it('should return null when data is deleted from food', async () => {
     let response = await request.delete(`/food/${idFood}`);
     expect(response.status).toEqual(200);
@@ -101,3 +106,4 @@ describe('Correct status codes and returned data for Delete/:id routes', () => {
     expect(response.body).toStrictEqual({ message: null });
   });
 });
+
